@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import PredictionPage from "./screen/main";
+import Chatbot from "./trash/chat";
+import ResponsiveAppBar from "./components/appbar";
+import Home from "./screen/home";
+import Chatboxnew from "./trash/newchat";
+import Chatbota from "./screen/bootchat";
+import Chatbotxt from "./trash/chatabota";
+import ImagePredict from "./screen/imgpredictor";
+import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+<div>
+
+<Router>
+  <Routes>
+  <Route element={<Home/>} path={'/'}/>
+  <Route element={<ImagePredict/>} path={'/img'}/>
+  
+    <Route element={<Chatbota/>} path={'/chat'}/>
+  </Routes>
+</Router>
+
+    
+    
     </div>
+
   );
 }
 

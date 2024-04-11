@@ -12,10 +12,10 @@ export default function Chatbota() {
         const hour = date.getHours();
         const minute = date.getMinutes();
         const str_time = hour + ":" + minute;
-
+    
         const rawText = text;
         setText('');
-
+    
         const userHtml = (
             <div className="d-flex justify-content-end mb-4">
                 <div className="msg_cotainer_send">
@@ -27,10 +27,12 @@ export default function Chatbota() {
                 </div>
             </div>
         );
-        setMessages([...messages, userHtml]);
-
+    
+        // Use the functional form of setMessages
+        setMessages(prevMessages => [...prevMessages, userHtml]);
+    
         try {
-            const response = await fetch("/get", {
+            const response = await fetch("http://localhost:8080/get", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -39,7 +41,7 @@ export default function Chatbota() {
                     msg: rawText
                 })
             });
-            const data = await response.json();
+            const data = await response.text();
             const botHtml = (
                 <div className="d-flex justify-content-start mb-4">
                     <div className="img_cont_msg">
@@ -51,11 +53,15 @@ export default function Chatbota() {
                     </div>
                 </div>
             );
-            setMessages([...messages, botHtml]);
+    
+            // Update messages using the functional form of setMessages
+            setMessages(prevMessages => [...prevMessages, botHtml]);
         } catch (error) {
             console.error('Error:', error);
         }
     };
+    
+    
 
     return (
         <div style={{background:'#686de0'}}>
